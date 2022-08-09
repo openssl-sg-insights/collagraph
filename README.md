@@ -43,13 +43,9 @@ def Counter(props):
         cg.h("button", {"text": "Bump", "on_clicked": bump}),
     )
 
-# Create a Collagraph instance with a PySide renderer 
-# and register with the Qt event loop
-gui = cg.Collagraph(
-    renderer=cg.PySideRenderer(),
-    event_loop_type=cg.EventLoopType.QT,
-)
-# Render the function component into a container 
+# Create a Collagraph instance with a PySide renderer
+gui = cg.Collagraph(renderer=cg.PySideRenderer())
+# Render the function component into a container
 # (in this case the app but can be another widget)
 app = QtWidgets.QApplication()
 gui.render(cg.h(Counter, state), app)
@@ -58,9 +54,10 @@ app.exec()
 
 For more examples, please take a look at the [examples folder](examples).
 
-Currently there are two renderers:
+Currently there are three renderers:
 
 * [PysideRenderer](collagraph/renderers/pyside_renderer.py): for rendering PySide6 applications
 * [PygfxRenderer](collagraph/renderers/pygfx_renderer.py): for rendering 3D graphic scenes with [Pygfx](https://github.com/pygfx/pygfx)
+* [DomRenderer](collagraph/renderers/dom_renderer.py): for rendering to browser DOM through [PyScript](https://pyscript.net)
 
-It is possible to create a custom Renderer using the [Renderer](collagraph/renderers/__init__.py) interface, to render to other UI frameworks, for instance wxPython, or even the browser DOM.
+It is possible to create a custom Renderer using the [Renderer](collagraph/renderers/__init__.py) interface, to render to other UI frameworks, for instance wxPython.
